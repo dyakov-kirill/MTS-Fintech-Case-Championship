@@ -1,11 +1,15 @@
 package org.example.services;
 
 import org.example.entities.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class CreatorService {
     List<Furnace> furnaces;
 
@@ -23,11 +27,16 @@ public class CreatorService {
                     result.put(furnace.produceProduct(type), result.getOrDefault(type, 0) + 1);
                     order.decreaseProducts(entity.getKey());
                 } else {
-
+                    Map<Component, Integer> neededComponents = furnace.getNeededComponents(type);
+                    furnace.putComponents(neededComponents);
+                    furnace.produceProduct(type);
+                    //new RestTemplate().postForEntity();
+                    // if ok ->
+                    result.put(furnace.produceProduct(type), result.getOrDefault(type, 0) + 1);
                 }
             }
         }
-        return null;
+        return result;
     }
 
     private Furnace getAvailableFurnace(ProductType type) {

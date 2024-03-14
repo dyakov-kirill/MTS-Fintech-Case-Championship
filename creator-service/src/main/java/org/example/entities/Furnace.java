@@ -40,4 +40,10 @@ public class Furnace implements Producer {
         return result;
     }
 
+    public void putComponents(Map<Component, Integer> components) {
+        for (Map.Entry<Component, Integer> entity: components.entrySet()) {
+            this.components.put(entity.getKey(), this.components.get(entity.getKey()) + entity.getValue());
+        }
+    }
+
 }
