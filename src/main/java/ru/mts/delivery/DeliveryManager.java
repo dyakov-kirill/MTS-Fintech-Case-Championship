@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mts.Order;
+import ru.mts.Product;
 import ru.mts.delivery.courier.*;
 
 import java.util.List;
@@ -13,9 +14,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-@RestController
-@RequestMapping("/api/shop")
-@RequiredArgsConstructor
+@Component
 public class DeliveryManager {
     Map<Couriers, Integer> couriersAmount;
 
@@ -24,8 +23,8 @@ public class DeliveryManager {
         this.couriersAmount = couriersAmount;
     }
 
-    public void manageDelivery(Order order) {
-        int amount = orderAmount(order);
+    public void manageDelivery(List<Product> order) {
+        int amount = order.size();
         if (amount > 20) {
             throw new RuntimeException("Слишком большое количество заказов:" + amount);
         } else if (amount > 10) {
@@ -44,14 +43,5 @@ public class DeliveryManager {
                 pedestrian.deliver();
             }
         }
-    }
-
-    private int orderAmount(Order order) {
-        AtomicInteger result = new AtomicInteger();
-        order.getProducts().forEach(
-                (product, integer) -> result.addAndGet(integer)
-        );
-
-        return result.get();
     }
 }
