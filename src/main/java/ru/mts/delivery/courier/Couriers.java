@@ -1,6 +1,6 @@
 package ru.mts.delivery.courier;
 
-public enum Courires {
+public enum Couriers {
     CAR,
     BIKE,
     PEDESTRIAN

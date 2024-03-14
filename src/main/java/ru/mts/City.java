@@ -1,2 +1,8 @@
-package ru.mts.delivery;public enum City {
+package ru.mts;
+
+public enum City {
+    MOSCOW,
+    ST_PETERSBURG,
+    NOVOSIBIRSK,
+    EKATERINBURG
 }

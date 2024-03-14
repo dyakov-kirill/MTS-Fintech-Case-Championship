@@ -1,4 +1,4 @@
-package ru.mts.delivery;
+package ru.mts;
 
 public class Product {
 }

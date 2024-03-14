@@ -1,2 +1,6 @@
-package ru.mts;public class OrderType {
+package ru.mts;
+
+public enum OrderType {
+    COURIER,
+    AT_THE_CASH
 }
