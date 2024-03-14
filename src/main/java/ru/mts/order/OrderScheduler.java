@@ -98,6 +98,7 @@ public class OrderScheduler {
         ResponseEntity<String> response
                 = restTemplate.getForEntity(kitchenResourceUrl + "/" + order.getId(), String.class);
 //        Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+        orders.remove(order);
 
         // post an order to delivery
         HttpEntity<Order> requestForDelivery = new HttpEntity<>(order);
