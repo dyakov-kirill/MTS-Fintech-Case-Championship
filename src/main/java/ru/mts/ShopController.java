@@ -23,7 +23,7 @@ public class ShopController {
     private final ShopProdService shopProdService;
 
     @PostMapping()
-    public void postShopping(@RequestBody Map<String, Integer> orderProduct) throws InterruptedException {
+    public void postShopping(@RequestBody List<OrderProduct> orderProduct) throws InterruptedException {
         shopProdService.timeShopping(orderProduct);
     }
 
