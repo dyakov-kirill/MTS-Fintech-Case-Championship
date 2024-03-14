@@ -8,7 +8,7 @@ import ru.mts.dto.ComponentOrderDto;
 import ru.mts.services.ComponentOrderService;
 
 @RestController
-@RequestMapping("/api/history/componentOrder")
+@RequestMapping("/api/history/componentOrders")
 public class ComponentOrderController {
 
     private final ComponentOrderService componentOrderService;
